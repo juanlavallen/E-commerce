@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
                 });
             }
             req.user = user;
-            next();
+            next(); 
         });
     } else {
         return res.status(401).json({
