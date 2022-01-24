@@ -6,6 +6,7 @@ const app = express();
 const { connectDB } = require('./database/cofig');
 
 const userRoute = require('./routes/users');
+const authRoute = require('./routes/auth');
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
 
 app.listen(process.env.PORT, () => {
