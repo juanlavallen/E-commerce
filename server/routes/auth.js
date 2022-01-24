@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const CryptoJS = require('crypto-js');
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const router = Router();
 
@@ -40,8 +41,15 @@ router.post('/login', async (req, res) => {
             });
         }
 
+        const accessToken = jwt.sign({
+            id: user.id,
+            isAdmin: user.isAdmin
+        }, process.env.SECRET_KEY, {
+            expiresIn: '1d'
+        });
+
         const { password, ...others } = user._doc;
-        res.status(200).json(others);
+        res.status(200).json({ others, accessToken });
 
     } catch (err) {
         res.status(500).json(err);
