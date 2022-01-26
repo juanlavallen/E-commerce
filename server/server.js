@@ -5,8 +5,10 @@ const app = express();
 
 const { connectDB } = require('./database/config');
 
-const userRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
+const userRoute = require('./routes/users');
+const productRoute = require('./routes/products');
+
 
 dotenv.config();
 
@@ -17,6 +19,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
+app.use('/api/products', productRoute);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
