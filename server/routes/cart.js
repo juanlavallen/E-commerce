@@ -13,7 +13,7 @@ route.post('/', verifyToken, async (req, res) => {
     }
 });
 
-route.put('/:id', verifyTokenAndAuthorization, async(req, res) => {
+route.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
     try {
         const updatedCart = await Cart.findByIdAndUpdate(
             req.params.id,
@@ -30,7 +30,7 @@ route.put('/:id', verifyTokenAndAuthorization, async(req, res) => {
     }
 });
 
-route.delete('/:id', verifyTokenAndAuthorization, async(req,res) => {
+route.delete('/:id', verifyTokenAndAuthorization, async (req, res) => {
     try {
         await Cart.findOneAndDelete(req.params.id);
         res.status(200).json('Cart has been deleted...');
@@ -39,9 +39,10 @@ route.delete('/:id', verifyTokenAndAuthorization, async(req,res) => {
     }
 });
 
-route.get('/find/:userId', verifyTokenAndAuthorization, async(req, res) => {
+route.get('/find/:userId', verifyTokenAndAuthorization, async (req, res) => {
     try {
-        const cart = await Cart.find({});
+        const cart = await Cart.find({ userId: req.params.userId });
+        res.status(200).json(cart);
     } catch (err) {
         res.status(500).json(err);
     }
