@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { verifyToken } = require('../helpers/verify-token');
+const { verifyToken, verifyTokenAndAdmin } = require('../helpers/verify-token');
 const Order = require('../models/Order');
 const route = Router();
 
@@ -13,5 +13,15 @@ route.post('/', verifyToken, async (req, res) => {
     }
 });
 
+route.put('/:id', verifyTokenAndAdmin, async (req, res) => {
+    try {
+        const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {
+            $set: req.body,
+        }, { new: true });
+        res.status(200).json(updatedOrder);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 module.exports = route;
