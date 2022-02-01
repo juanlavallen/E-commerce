@@ -38,3 +38,7 @@ route.delete('/:id', verifyTokenAndAuthorization, async(req,res) => {
         res.status(500).json(err);
     }
 });
+
+route.get('/find/:id', verifyTokenAndAuthorization, async(req, res) => {
+
+});
