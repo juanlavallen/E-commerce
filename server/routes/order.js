@@ -42,4 +42,13 @@ route.get('/find/:userId', verifyTokenAndAuthorization, async (req, res) => {
     }
 });
 
+route.get('/', verifyTokenAndAdmin, async (req, res) => {
+    try {
+        const orders = await Order.find();
+        res.status(200).json(orders);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = route;
