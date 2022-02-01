@@ -39,6 +39,10 @@ route.delete('/:id', verifyTokenAndAuthorization, async(req,res) => {
     }
 });
 
-route.get('/find/:id', verifyTokenAndAuthorization, async(req, res) => {
-
+route.get('/find/:userId', verifyTokenAndAuthorization, async(req, res) => {
+    try {
+        const cart = await Cart.find({});
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
