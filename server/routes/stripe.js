@@ -8,7 +8,7 @@ route.post('/payment', async(req, res) => {
         amount: req.body.amount,
         currency: 'usd'
     }, (stripeErr, stripeRes) => {
-        
+         
     });
 });
 
