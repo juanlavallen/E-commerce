@@ -6,10 +6,14 @@ const Container = styled.div`
     background-color: black;`
 
 const Wrapper = styled.div`
-    padding: 10px 20px;`
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center`
 
 const Left = styled.div``
+
 const Center = styled.div``
+
 const Right = styled.div``
 
 const Navbar = () => {
